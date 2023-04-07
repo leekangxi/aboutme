@@ -15,6 +15,8 @@ import androidx.databinding.DataBindingUtil
 import com.example.week7practical.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    //using binding that build on gradile so that no need to definebyID everytime
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,13 +43,14 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun addNickname(view: View){
-        val editText = findViewById<EditText>(R.id.nickname_edit)
-        val nicknameTextView = findViewById<TextView>(R.id.nickname_text)
+        //val editText = findViewById<EditText>(R.id.nickname_edit)
+        //val nicknameTextView = findViewById<TextView>(R.id.nickname_text)
 
-        nicknameTextView.text = editText.text
-        editText.visibility = View.GONE
+        binding.nicknameText.text = binding.nicknameEdit.text
+
+        binding.nicknameEdit.visibility = View.GONE
         view.visibility = View.GONE
-        nicknameTextView.visibility = VISIBLE
+        binding.nicknameText.visibility = VISIBLE
 
         val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
@@ -56,15 +59,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateNickname(view:View){
-        val editText = findViewById<EditText>(R.id.nickname_edit)
-        val doneButton = findViewById<Button>(R.id.done_button)
+        //val editText = findViewById<EditText>(R.id.nickname_edit)
+        //val doneButton = findViewById<Button>(R.id.done_button)
 
-        editText.visibility = View.VISIBLE
+        binding.nicknameEdit.visibility = View.VISIBLE
 
-        doneButton.visibility = View.VISIBLE
+        binding.doneButton.visibility = View.VISIBLE
         view.visibility = View.GONE
 
-        editText.requestFocus()
+        binding.nicknameEdit.requestFocus()
     }
 
 
